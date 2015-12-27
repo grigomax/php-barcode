@@ -122,8 +122,22 @@
 			imagefilledrectangle( $image, 0, $location, $img_width, $cur_size, ($position % 2 == 0 ? $white : $black) );
 		$location = $cur_size;
 	}
-	// Draw barcode to the screen
-	header ('Content-type: image/png');
-	imagepng($image);
-	imagedestroy($image);
+	
+	//if you want saved e image in local..
+	
+	if($_GET['saved'] == "yes")
+        {
+        	//here your path example
+            $_path = "../../spool/barcode.png";
+            imagepng($image,$_path);
+            //imagedestroy($image, $_path); 
+        }
+        else
+        {
+          // Draw barcode to the screen
+            header ('Content-type: image/png');
+            imagepng($image);
+            imagedestroy($image);  
+        }
+
 ?>
